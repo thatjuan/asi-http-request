@@ -26,5 +26,5 @@ Pod::Spec.new do |s|
                                     '-framework MobileCoreServices ' \
                                     '-l z.1' }
 
-  s.dependency 'Reachability', '= 2.0.fdcustom'
+  s.dependency 'Reachability', '= 2.0.fdcustom', :podspec => 'https://github.com/thatjuan/asi-http-request/tree/legacy/External/Reachability/Reachability.podspec'
 end
