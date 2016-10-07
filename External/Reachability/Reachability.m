@@ -270,7 +270,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	
 	SCNetworkReachabilityContext	context = {0, self, NULL, NULL, NULL};
 	
-	if(SCNetworkReachabilitySetCallback(reachabilityRef, ReachabilityCallback, &context)) {
+	if(reachabilityRef && SCNetworkReachabilitySetCallback(reachabilityRef, ReachabilityCallback, &context)) {
 		
 		if(SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode)) {
 
@@ -640,6 +640,16 @@ static const SCNetworkReachabilityFlags kOnDemandConnection = kSCNetworkReachabi
 	return NO;
 	
 } // isReachableViaWiFi
+
+- (BOOL) isConnectedToVPN {
+
+    NSAssert(reachabilityRef, @"connectedToVPN called with NULL reachabilityRef");
+    
+    SCNetworkReachabilityFlags flags = [self reachabilityFlags];
+    
+    return flags & kSCNetworkFlagsTransientConnection;
+    
+} // isConnectedToVPN
 
 
 - (SCNetworkReachabilityFlags) reachabilityFlags {

@@ -175,7 +175,7 @@ extern NSString *const kReachabilityChangedNotification;
 - (BOOL) isReachable;
 
 // WWAN may be available, but not active until a connection has been established.
-// WiFi may require a connection for VPN on Demand.
+// WiFi may require a connection for FDN on Demand.
 - (BOOL) isConnectionRequired; // Identical DDG variant.
 - (BOOL)   connectionRequired; // Apple's routine.
 
@@ -188,6 +188,7 @@ extern NSString *const kReachabilityChangedNotification;
 // Routines for specific connection testing by your app.
 - (BOOL) isReachableViaWWAN;
 - (BOOL) isReachableViaWiFi;
+- (BOOL) isConnectedToVPN;
 
 - (SCNetworkReachabilityFlags) reachabilityFlags;
 
